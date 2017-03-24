@@ -1,0 +1,213 @@
+[
+    {
+        "id": "7e06ce40.c15e3",
+        "type": "tab",
+        "label": "Flow 2"
+    },
+    {
+        "id": "33a4e2ce.99063e",
+        "type": "http in",
+        "z": "7e06ce40.c15e3",
+        "name": "Input",
+        "url": "/watson-chatbot",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 101,
+        "y": 206,
+        "wires": [
+            [
+                "73effd43.d99254",
+                "4ba01cf3.f9cd34"
+            ]
+        ]
+    },
+    {
+        "id": "4ba01cf3.f9cd34",
+        "type": "debug",
+        "z": "7e06ce40.c15e3",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 281,
+        "y": 146,
+        "wires": []
+    },
+    {
+        "id": "73effd43.d99254",
+        "type": "switch",
+        "z": "7e06ce40.c15e3",
+        "name": "Authentication",
+        "property": "payload.token",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "vH8Yx1kA9fK0sj3oENhnrjow",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 271,
+        "y": 206,
+        "wires": [
+            [
+                "72010f91.64ff6"
+            ],
+            [
+                "10f43d47.a50e93"
+            ]
+        ]
+    },
+    {
+        "id": "72010f91.64ff6",
+        "type": "function",
+        "z": "7e06ce40.c15e3",
+        "name": "Prepare for Conversation",
+        "func": "msg.payload = msg.payload.text;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 519,
+        "y": 164,
+        "wires": [
+            [
+                "e236b845.051478",
+                "3b00f764.2e1328"
+            ]
+        ]
+    },
+    {
+        "id": "358ab951.9fac46",
+        "type": "http response",
+        "z": "7e06ce40.c15e3",
+        "name": "",
+        "x": 637,
+        "y": 313,
+        "wires": []
+    },
+    {
+        "id": "75b73f6c.ff8af",
+        "type": "http response",
+        "z": "7e06ce40.c15e3",
+        "name": "",
+        "x": 1255,
+        "y": 185,
+        "wires": []
+    },
+    {
+        "id": "e236b845.051478",
+        "type": "watson-conversation-v1",
+        "z": "7e06ce40.c15e3",
+        "name": "",
+        "workspaceid": "545e1fbf-9e53-4bb8-a2f4-b59c1553d0e4",
+        "multiuser": false,
+        "context": true,
+        "x": 750,
+        "y": 230,
+        "wires": [
+            [
+                "488b1450.c9e1cc"
+            ]
+        ]
+    },
+    {
+        "id": "488b1450.c9e1cc",
+        "type": "function",
+        "z": "7e06ce40.c15e3",
+        "name": "Response from Conversation",
+        "func": "msg.payload = msg.payload.output.text + \"\";\nreturn msg;\n",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 1004,
+        "y": 185,
+        "wires": [
+            [
+                "75b73f6c.ff8af"
+            ]
+        ]
+    },
+    {
+        "id": "3b00f764.2e1328",
+        "type": "debug",
+        "z": "7e06ce40.c15e3",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 769,
+        "y": 130,
+        "wires": []
+    },
+    {
+        "id": "10f43d47.a50e93",
+        "type": "change",
+        "z": "7e06ce40.c15e3",
+        "name": "Invalid token provided",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Invalid authentication token provided",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 491,
+        "y": 226,
+        "wires": [
+            [
+                "358ab951.9fac46"
+            ]
+        ]
+    },
+    {
+        "id": "e5152028.62206",
+        "type": "http in",
+        "z": "7e06ce40.c15e3",
+        "name": "HTML",
+        "url": "/watson-chatbot",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 332,
+        "wires": [
+            [
+                "39805bc2.ee48e4"
+            ]
+        ]
+    },
+    {
+        "id": "39805bc2.ee48e4",
+        "type": "function",
+        "z": "7e06ce40.c15e3",
+        "name": "HTML Form",
+        "func": "\nvar html = \"\\n\\\n<html>\\n\\\n<head>\\n\\\n<script \\n\\\n  src='//code.jquery.com/jquery-3.1.1.min.js' \\n\\\n  integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' \\n\\\n  crossorigin='anonymous'></script>\\n\\\n<script>\\n\\\nvar token = 'vH8Yx1kA9fK0sj3oENhnrjow';\\n\\\n$(function() {\\n\\\n    $('#message').keypress(function (e) {\\n\\\n        if (e.which == 13) {\\n\\\n            submit();\\n\\\n            return false;\\n\\\n        }\\n\\\n    });\\n\\\n    \\\n    $('#submit').click(submit);\\n\\\n    \\\n    function submit() {\\n\\\n        var msg = $('#message').val();\\n\\\n        $('#messages').append('<li class=\\\"human\\\">' + msg + '</li>')\\n\\\n        $('#message').val(\\\"\\\")\\n\\\n        var options = {\\n\\\n            url:'/watson-chatbot',\\n\\\n            method:'POST',\\n\\\n            data:{text: msg, token: token}\\n\\\n        }\\n\\\n        $.ajax(options).done(function(res) {\\n\\\n            $('#messages').append('<li class=\\\"robot\\\">' + res + '</li>')\\n\\\n            $('#messages').parent().scrollTop($('#messages').parent()[0].scrollHeight);\\n\\\n        })\\n\\\n    }\\n\\\n})\\n\\\n</script>\\n\\\n<style>\\n\\\n#messages {padding: 0px;} \\n\\\n#messages li {list-style-type: none; padding: 10px 30px; }\\n\\\n#message {padding-left: 10px; float: left; width: calc(100% - 100px); height: 50px; font-size: 30px;} \\n\\\nli.human {color: green; text-align: right}\\n\\\nli.robot {color: red; text-align: left}\\n\\\n</style>\\n\\\n</head>\\n\\\n<body style='margin: 0px;'>\\n\\\n    <div style='height: calc(100% - 60px); overflow-y: scroll;'>\\n\\\n        <ul id='messages'></ul>\\n\\\n    </div>\\n\\\n    <div style='position: fixed; bottom: 20px; width: 100%; height: 40px;'>\\n\\\n        <input id='message'/>\\n\\\n        <input id='submit' type='submit' style='float: left; width: 100px; height: 50px; '/>\\n\\\n    </div>\\n\\\n</body>\\n\\\n</html>\\n\\\n\"\n\nmsg.payload = html;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 294,
+        "y": 343,
+        "wires": [
+            [
+                "2ada8435.36a2fc"
+            ]
+        ]
+    },
+    {
+        "id": "2ada8435.36a2fc",
+        "type": "http response",
+        "z": "7e06ce40.c15e3",
+        "name": "",
+        "x": 481,
+        "y": 343,
+        "wires": []
+    }
+]
