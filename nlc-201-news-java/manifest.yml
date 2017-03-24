@@ -1,0 +1,11 @@
+---
+applications:
+- name: nlc-201-news-java
+  memory: 512M
+  host: <YOUR_PERSONAL_HOST_NAME>
+  domain: mybluemix.net
+  services:
+  - News Classifier Feedback
+  - News Classifier
+  env:
+    CLASSIFIER_ID: <YOUR_CLASSIFIER_ID>

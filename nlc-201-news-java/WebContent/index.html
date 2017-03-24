@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ITSO News Classification</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/style.css">
+<link href="css/jsontree.css" rel="stylesheet">
+</head>
+<body>
+    <header class="_demo--heading">
+	<div class="_demo--container">
+		<a class="wordmark" href="index.html">
+			<span class="wordmark--right" style="color:orange">News Classification</span>
+		</a>
+		<nav class="heading-nav" role="menubar">
+		  <ul>
+			<li class="base--li heading-nav--li" role="presentation">
+				<a class="heading-nav--item" href="https://www.ibm.com/watson/developercloud/nl-classifier.html" role="menuitem">
+					Natural Language Classifier Documentation
+				</a>
+			</li>
+			<li class="base--li heading-nav--li" role="presentation">
+				<a class="heading-nav--item" href="http://www.redbooks.ibm.com/" role="menuitem">
+					IBM Redbooks
+				</a>
+			</li>
+			</ul>
+		</nav>		
+	</div>
+</header>
+  <div class="_demo--banner">
+	<div class="_demo--container">
+		<div class="banner--service-icon-container">
+			<img class="banner--service-icon" src="images/News-Classification.png" alt="Retrieve and Rank API Icon" style="width: 124px; height: 81px; ">
+		</div>
+		
+		<div class="banner--service-info">
+			<h2 class="banner--service-title base--h2"></h2>
+			<h2 class="banner--service-title base--h2" style="height: 61px; ">
+				News Classification
+			</h2>
+		</div>
+	</div>
+</div>
+
+  <div class="_demo--container">
+	<article class="_content base--article">
+		<div class="_content--choose-input-file">
+			<h3 id="top" class="base--h3">Put a text news bellow and classify</h3>
+			<p class="_content--input-description base--p">
+				The classification will be between the types : Business, Technology, Sports, Politics and Entertainment
+			</p>
+		</div>		    
+			<table border="" style="width: 100%">
+				<tr>
+					<td><h5 class="base--h5">Text Input:</h5></td>
+				</tr>
+				<tr>
+					<td><textarea id="textNews" name="textNews" rows="6" cols="60" class="input--question--manual base--a"></textarea>					
+				</tr>				
+			</table>	
+			
+			<input type="button"
+			class="input--request-button base--a" id="classifyText" value="Classify News">
+
+			<div class="watson" style="display:none;'">
+	 			<div class="_demo--container">
+	 				<p class="base--p">
+						<img src="images/watson.gif" alt="Watson" style="width:96px;height:96px;align:middle">
+					</p>	
+	 			</div>
+  			</div> 
+  	</article>
+  </div>
+<div class="output" style="display:none;'">
+  		<div class="_demo--container">
+		<div class="toggle">
+			<div class="toggle--item active">Watson Natural Language Classifier</div>
+		</div>
+		<div class="service--results"></div> 
+		<input type="button" class="input--request-button base--a" id="feedback" value="Feedback">  
+	</div>
+</div>
+<div class="outputSimple" style="display:none;'">
+		<div class="_demo--container">
+ 				<h3 class="base--h3" id="title_message">No Title</h3>
+ 				<span id="message" style="color:red">No message</span>      			
+ 		</div>
+</div>
+<div class="results--item result--template" style="display:none;">
+   		    <div class="results--basic-info">      
+ 				<div class="results--item-text">
+   					<span class="icon icon-see_more results--see-more"></span>
+ 				</div>
+ 			</div>
+ 			<div class="results--more-info" style="display: none;">
+ 				<blockquote class="results--item-details base--blockquote">
+ 				</blockquote>
+ 			</div>	
+ 	   <div class="results--item-score">
+			 <div class="results--item-change-class"></div> 			       			
+      </div>		
+</div>  
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/jsontree.js"></script>
+</body>
+</html>
