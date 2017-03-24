@@ -1,0 +1,11 @@
+---
+applications:
+- name: nlc-201-news-java-student
+  memory: 512M
+  host: <YOUR_PERSONAL_HOST_NAME>
+  domain: mybluemix.net
+  services:
+  - <YOUR_CLOUDANT_SERVICE_NAME>
+  - <YOUR_NATURAL_CLASSIFIER_SERVICE_NAME>
+  env:
+    CLASSIFIER_ID: <YOUR_CLASSIFIER_ID>
