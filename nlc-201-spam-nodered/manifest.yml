@@ -1,0 +1,16 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: tm-name-0227
+  host: tm-host-0227
+  disk_quota: 1024M
+  services:
+  - tm-name-0227-cloudantNoSQLDB
+  env:
+    NODE_RED_STORAGE_NAME: tm-name-0227-cloudantNoSQLDB
+declared-services:
+  tm-name-0227-cloudantNoSQLDB:
+    label: cloudantNoSQLDB
+    plan:  Lite
